@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f47c20">
+  <title>大愛社區中元普渡報名名單</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "Noto Sans TC", "Microsoft JhengHei", Arial, sans-serif;
+      color: #49342a;
+      background:
+        radial-gradient(circle at top left, rgba(255, 167, 92, 0.34), transparent 35%),
+        linear-gradient(180deg, #fff0e3 0%, #fff8f2 55%, #ffffff 100%);
+    }
+
+    .page {
+      width: 100%;
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 22px 15px 40px;
+    }
+
+    .header {
+      position: relative;
+      overflow: hidden;
+      padding: 32px 20px 28px;
+      text-align: center;
+      color: #ffffff;
+      background: linear-gradient(135deg, #c94f05, #f47c20 55%, #ffad5c);
+      border-radius: 24px 24px 12px 12px;
+      box-shadow: 0 12px 30px rgba(169, 74, 15, 0.24);
+    }
+
+    .header::before,
+    .header::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .header::before {
+      width: 150px;
+      height: 150px;
+      top: -70px;
+      right: -45px;
+    }
+
+    .header::after {
+      width: 90px;
+      height: 90px;
+      bottom: -45px;
+      left: -25px;
+    }
+
+    .header-icon {
+      position: relative;
+      z-index: 1;
+      font-size: 48px;
+      line-height: 1;
+      margin-bottom: 12px;
+    }
+
+    .header h1 {
+      position: relative;
+      z-index: 1;
+      margin: 0;
+      font-size: clamp(25px, 7vw, 36px);
+      line-height: 1.35;
+      letter-spacing: 1px;
+    }
+
+    .header p {
+      position: relative;
+      z-index: 1;
+      margin: 10px 0 0;
+      font-size: 16px;
+      opacity: 0.95;
+    }
+
+    .event-info {
+      margin-top: 16px;
+      padding: 18px;
+      background: #fff1e6;
+      border: 1px solid #ffc7a0;
+      border-radius: 18px;
+    }
+
+    .info-grid {
+      display: grid;
+      gap: 10px;
+    }
+
+    .info-item {
+      display: grid;
+      grid-template-columns: 34px 1fr;
+      align-items: center;
+      gap: 10px;
+      padding: 2px 0;
+      font-size: 16px;
+      line-height: 1.55;
+    }
+
+    .info-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 34px;
+      height: 34px;
+      text-align: center;
+      font-size: 18px;
+      background: #ffffff;
+      border-radius: 50%;
+    }
+
+    .info-label {
+      margin-right: 6px;
+      font-weight: 700;
+      color: #e7650b;
+    }
+
+    .form-card {
+      margin-top: 16px;
+      padding: 23px 20px;
+      background: #ffffff;
+      border: 1px solid #f3d1b8;
+      border-radius: 14px;
+      box-shadow: 0 8px 24px rgba(160, 82, 33, 0.1);
+    }
+
+    .form-title {
+      margin: 0 0 5px;
+      color: #c6570b;
+      text-align: center;
+      font-size: 23px;
+    }
+
+    .form-subtitle {
+      margin: 0 0 22px;
+      color: #80695c;
+      text-align: center;
+      font-size: 14px;
+    }
+
+    .form-group {
+      margin-bottom: 18px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      color: #8f481b;
+      font-weight: 700;
+      font-size: 15px;
+    }
+
+    .required {
+      color: #e53935;
+    }
+
+    input {
+      width: 100%;
+      min-height: 50px;
+      padding: 12px 14px;
+      color: #49342a;
+      background: #fffdfb;
+      border: 1.5px solid #e7c3a8;
+      border-radius: 10px;
+      outline: none;
+      font-family: inherit;
+      font-size: 16px;
+      transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+    }
+
+    input:focus {
+      background: #ffffff;
+      border-color: #f47c20;
+      box-shadow: 0 0 0 4px rgba(244, 124, 32, 0.14);
+    }
+
+    input[readonly] {
+      color: #70594c;
+      background: #f9eee5;
+      cursor: default;
+    }
+
+    .hint {
+      display: block;
+      margin-top: 6px;
+      color: #806f65;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .submit-btn {
+      width: 100%;
+      min-height: 54px;
+      margin-top: 5px;
+      padding: 13px 18px;
+      color: #ffffff;
+      background: linear-gradient(135deg, #d85d0c, #f7933e);
+      border: none;
+      border-radius: 12px;
+      box-shadow: 0 7px 17px rgba(217, 95, 8, 0.25);
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .submit-btn:active {
+      transform: translateY(2px);
+      box-shadow: 0 4px 10px rgba(217, 95, 8, 0.2);
+    }
+
+    .notice {
+      margin-top: 16px;
+      padding: 15px;
+      color: #7a431f;
+      background: #fff1e6;
+      border: 1px dashed #f6a15d;
+      border-radius: 10px;
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .success-message {
+      display: none;
+      margin-top: 17px;
+      padding: 17px;
+      color: #125a30;
+      background: #e8f7ee;
+      border: 1px solid #9bd4af;
+      border-radius: 10px;
+      text-align: center;
+      font-weight: 700;
+      line-height: 1.7;
+    }
+
+    .footer {
+      padding: 23px 10px 5px;
+      color: #7a675c;
+      text-align: center;
+      font-size: 14px;
+      line-height: 1.8;
+    }
+
+    @media (max-width: 480px) {
+      .page {
+        padding: 12px 10px 28px;
+      }
+
+      .header {
+        padding: 27px 15px 24px;
+        border-radius: 20px 20px 10px 10px;
+      }
+
+      .header-icon {
+        font-size: 42px;
+      }
+
+      .form-card {
+        padding: 19px 15px;
+      }
+
+      .info-item {
+        padding: 2px 0;
+        font-size: 15px;
+      }
+
+      input {
+        font-size: 16px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="page">
+    <header class="header">
+      <div class="header-icon">🙏</div>
+      <h1>大愛社區中元普渡<br>報名名單</h1>
+      <p>誠摯邀請社區住戶共同參與</p>
+    </header>
+
+    <section class="event-info">
+      <div class="info-grid">
+        <div class="info-item">
+          <span class="info-icon">📅</span>
+          <div>
+            <span class="info-label">日期</span>
+            8 月 22 日（星期六）
+          </div>
+        </div>
+
+        <div class="info-item">
+          <span class="info-icon">🕑</span>
+          <div>
+            <span class="info-label">時間</span>
+            下午 2：00～5：00
+          </div>
+        </div>
+
+        <div class="info-item">
+          <span class="info-icon">📍</span>
+          <div>
+            <span class="info-label">地點</span>
+            大愛社區中庭廣場
+          </div>
+        </div>
+
+        <div class="info-item">
+          <span class="info-icon">🎟️</span>
+          <div>
+            <span class="info-label">費用</span>
+            社區住戶免費
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="form-card">
+      <h2 class="form-title">住戶報名表</h2>
+      <p class="form-subtitle">請填寫以下資料，標示「＊」為必填欄位</p>
+
+      <form id="registrationForm">
+        <div class="form-group">
+          <label for="registrationTime">
+            報名時間
+          </label>
+          <input
+            type="text"
+            id="registrationTime"
+            name="報名時間"
+            readonly
+          >
+          <span class="hint">系統將自動記錄送出報名表的時間。</span>
+        </div>
+
+        <div class="form-group">
+          <label for="household">
+            戶號 <span class="required">＊</span>
+          </label>
+          <input
+            type="text"
+            id="household"
+            name="戶號"
+            placeholder="例如：A棟 3樓 38號"
+            maxlength="30"
+            autocomplete="off"
+            required
+          >
+        </div>
+
+        <div class="form-group">
+          <label for="participants">
+            參加人數 <span class="required">＊</span>
+          </label>
+          <input
+            type="number"
+            id="participants"
+            name="參加人數"
+            placeholder="請輸入參加人數"
+            min="1"
+            max="30"
+            inputmode="numeric"
+            required
+          >
+        </div>
+
+        <div class="form-group">
+          <label for="phone">
+            聯絡電話 <span class="required">＊</span>
+          </label>
+          <input
+            type="tel"
+            id="phone"
+            name="聯絡電話"
+            placeholder="例如：0912-345-678"
+            maxlength="20"
+            inputmode="tel"
+            autocomplete="tel"
+            required
+          >
+        </div>
+
+        <div class="form-group">
+          <label for="email">
+            E-mail <span class="required">＊</span>
+          </label>
+          <input
+            type="email"
+            id="email"
+            name="E-mail"
+            placeholder="例如：example@email.com"
+            maxlength="100"
+            inputmode="email"
+            autocomplete="email"
+            required
+          >
+        </div>
+
+        <button type="submit" class="submit-btn">
+          確認送出報名
+        </button>
+
+        <div class="success-message" id="successMessage" role="status">
+          ✅ 報名資料已完成登記！<br>
+          感謝您參加大愛社區中元普渡活動。
+        </div>
+      </form>
+
+      <div class="notice">
+        📌 請確認戶號、參加人數及聯絡資料填寫正確。活動相關通知將透過您所填寫的電話或 E-mail 聯繫。
+      </div>
+    </section>
+
+    <footer class="footer">
+      大愛社區管理中心 敬上<br>
+      歡迎社區住戶踴躍參加
+    </footer>
+  </main>
+
+  <script>
+    const GOOGLE_SCRIPT_URL = "請貼上Apps Script部署後的exec網址";
+
+    const form = document.getElementById("registrationForm");
+    const registrationTime = document.getElementById("registrationTime");
+    const successMessage = document.getElementById("successMessage");
+    const submitButton = form.querySelector("button[type='submit']");
+
+    function formatDateTime(date) {
+      return new Intl.DateTimeFormat("zh-TW", {
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit",
+        weekday: "short",
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+        hour12: false
+      }).format(date);
+    }
+
+    function updateRegistrationTime() {
+      registrationTime.value = formatDateTime(new Date());
+    }
+
+    updateRegistrationTime();
+
+    form.addEventListener("submit", async function (event) {
+      event.preventDefault();
+
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+
+      if (!GOOGLE_SCRIPT_URL.startsWith("https://script.google.com/macros/s/") ||
+          !GOOGLE_SCRIPT_URL.endsWith("/exec")) {
+        alert("尚未設定 Google Apps Script 部署網址，請先完成 Apps Script 部署。");
+        return;
+      }
+
+      updateRegistrationTime();
+
+      const formData = new URLSearchParams();
+      formData.append("registrationTime", registrationTime.value);
+      formData.append("household", document.getElementById("household").value.trim());
+      formData.append("participants", document.getElementById("participants").value);
+      formData.append("phone", document.getElementById("phone").value.trim());
+      formData.append("email", document.getElementById("email").value.trim());
+
+      const originalButtonText = submitButton.textContent;
+      submitButton.disabled = true;
+      submitButton.textContent = "資料送出中……";
+      successMessage.style.display = "none";
+
+      try {
+        await fetch(GOOGLE_SCRIPT_URL, {
+          method: "POST",
+          mode: "no-cors",
+          body: formData
+        });
+
+        successMessage.style.display = "block";
+        successMessage.scrollIntoView({
+          behavior: "smooth",
+          block: "center"
+        });
+
+        form.reset();
+        updateRegistrationTime();
+        submitButton.textContent = "報名已送出";
+
+        setTimeout(function () {
+          successMessage.style.display = "none";
+          submitButton.disabled = false;
+          submitButton.textContent = originalButtonText;
+        }, 6000);
+      } catch (error) {
+        console.error("報名資料送出失敗：", error);
+        alert("資料送出失敗，請確認網路連線後再試一次。");
+        submitButton.disabled = false;
+        submitButton.textContent = originalButtonText;
+      }
+    });
+  </script>
+</body>
+</html>
